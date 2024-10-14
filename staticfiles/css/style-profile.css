@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-color: rgb(20, 20, 20);
+}
+
+
+
+
+
+
+/* Profile Adder */
+
+
+.profile-adder-wrapper{
+    background-color: rgba(23, 23, 23, 0.989);
+    position: absolute;
+    z-index: 15;
+    padding: 2rem 2.5rem;
+    /* display: none; */
+    scale: 0;
+    border-radius: 10px;
+    border: 1px solid gray;
+    top: 50%;                   
+    left: 50%;                   
+    transform: translate(-50%, -50%);
+    transition:scale 0.15s ease-in-out,opacity 0.4s ease-in-out;
+}
+
+
+.profile-adder{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 55vw;
+    max-height: 40vh;
+    gap: 50px;
+    overflow-y: scroll;
+    padding: 15px 8px;
+    
+}
+
+
+/* Scrollbar styling */
+
+::-webkit-scrollbar {
+    width: 12px;              
+    height: 12px;             
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px;      
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;    
+    border-radius: 10px;     
+    border: 2px solid #ccc;    
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;    
+}
+
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #333;   
+}
+
+
+.profile-adder input[type="radio"]{
+    display: none;
+    
+}
+
+/* Scrollbar styling completes */
+
+input[type="radio"]:checked~ .p-avtar img{
+    scale: 1.1;
+    border: 2px solid white;
+    
+}
+
+.profile-adder label img{
+    height: 120px;
+    transition: 0.2s ease-in-out;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+
+
+.new-user-info{
+    padding: 2rem 0;
+    
+}
+
+.new-user-info input{
+    padding: 0.5rem 0.9rem;
+    font-size: 1.2rem;
+    width: 20rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.kids{
+    display: flex;
+    padding: 15px 0;
+}
+
+.kids input{
+   width:25px;
+   accent-color:red;
+}
+
+.kids span{
+    color: white;
+    letter-spacing: 1px;
+}
+
+.btn{
+    padding: 0.6rem 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border: 0;
+    transition: 0.2s ease-in-out;
+}
+.btn:hover{
+    background-color: rgb(212, 0, 0);
+}
+
+
+
+
+/* completes here */
+
+
+/* Profile */
+
+
+
+#profile-panel-title{
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+
+.profile-section{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    
+}
+
+
+.profile-panel{
+    background-color: rgba(0, 0, 0, 0.425);
+    height: auto;
+    border-radius: 10px;
+    width: 70vw;
+    /* margin: 0 auto; */
+    display: flex;
+    padding: 2.5rem 2rem;
+    align-items: center;
+    gap:15px;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+ 
+    
+}
+.profile-panel a{
+    text-decoration: none;
+}
+
+
+.profile-panel .profile img{
+   height: 100px;
+   border-radius: 5px;
+}
+
+.profile-panel .profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    transition: 0.2s ease-in-out;
+}
+
+.profile-panel .profile span{
+    color: white;
+    font-weight: bold;
+}
+
+.profile-panel .profile i{
+    font-size: 5rem;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 18px;
+}
+
+.profile:hover{
+    filter: brightness(1.15);
+    scale: 1.05;
+}
+
+
+

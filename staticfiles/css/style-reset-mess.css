@@ -1,0 +1,368 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, 'Geneva', Verdana, sans-serif
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color:black;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+
+
+
+.hidden{
+    display: none;
+}
+
+.navbar-index{
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    max-width: 1900px; 
+}
+
+.index-btn{
+    display: flex;
+    gap: 10px;
+}
+
+.index-btn #signin{
+    padding: 0.4rem 1rem;
+    font-size: 0.90rem;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(235, 7, 7);
+    border: 0.3px solid rgba(77, 76, 76, 0.232);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.index-btn #signin:hover{
+    background-color: rgb(208, 6, 6);
+}
+
+/* Background Image */
+
+.banner-movies{
+    background-image: url('img/forgot-background.jpg');
+    background-size: cover;
+    width: 100vw;
+    overflow:hidden;
+    position: absolute;
+    height: 100vh;
+    z-index: -5;
+}
+
+/* Signup Recommendation */
+
+
+/* Footer */
+
+.footer{
+    padding: 30px 150px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 120px;
+
+}
+
+.footer .link-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    gap: 170px;
+}
+
+.footer .link-wrapper ul{
+    list-style: none;
+}
+
+li{
+    padding:7px 0;
+    font-size: 0.95rem;
+}
+li a{
+    color: rgb(175, 175, 175);
+    letter-spacing: -0.6px;
+}
+
+.contact a,.contact{
+    color: rgb(175, 175, 175);
+}
+
+
+/* Footer's Email */
+
+
+footer{
+    margin-top: auto;
+    
+}
+
+footer .email-fill{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+
+footer .email-fill input{
+        position: relative;
+        background-color: rgba(19, 19, 19, 0.7);
+        font-size: 1rem;
+        border: 1px solid rgba(128, 128, 128, 0.797);
+        color: white;
+        width: 600px;
+        padding: 0.5rem 1rem;
+        padding-top: 1.5rem;
+        border-radius: 4px;
+}
+
+footer .email-fill button{
+    width: 220px;
+    font-weight: 550;
+    color: white;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+footer .email-fill button:hover{
+    background-color: rgb(220, 8, 8);
+}
+
+footer .email-fill span{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    /* color: rgb(157, 157, 157); */
+    color: rgb(180, 180, 180);
+    top: 0%;
+    right: 822px;
+    width: 100px;
+    transform: translateY(38%);
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.footer-email .email-fill {
+    padding:0 150px;
+    margin: 20px auto;
+}
+
+footer .footer span{
+    color: rgb(175, 175, 175);
+}
+
+.recom-email-btm{
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.language #lang-btm{
+    position: relative;
+    transform: translate(-133px,2px);
+    color: white;
+}
+
+/* Language */
+
+.language select{
+    font-size: 1.1rem;
+    background-color: rgba(0, 0, 0, 0.676);
+    color: white;
+    padding:0.2rem 1.5rem;
+    border-radius: 5px;
+    padding-left: 2rem;
+    
+    }
+    
+    .language i{
+    
+        color: rgba(255, 255, 255, 0.817);
+        font-size: 1.4rem;
+        /* position: relative; */
+        transform: translate(135%,8%);
+        
+    }
+    
+
+.message{
+    margin: 10px 0;
+    margin-bottom: 20px;
+}    
+
+/* Signin Styling */
+    
+    
+.login-wrapper{
+    margin: 50px auto;
+    background-color:rgb(255, 255, 255);
+    width: 450px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 150px;
+}
+
+
+
+
+
+.input-info{
+   display: flex;
+   flex-direction: column;
+   /* margin-bottom: 15px; */
+}
+
+
+.signin-email span{
+    position: relative;
+    color: rgb(173, 173, 173);
+    right: -10px;
+    top: -37px;
+    font-weight: 500;
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+
+}
+
+.signin-password span{
+    position: relative;
+    color: rgb(173, 173, 173);
+    font-weight: 500;
+    right: -10px;
+    top: -37px;
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+#signin-btn{
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 0;
+    border-radius: 5px;
+    border: 0;
+    background-color: red;
+    color: white;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+#signin-btn:hover{
+    background-color: rgb(207, 2, 2);
+}
+
+.other-detail input
+    {
+       width: 17px;
+       height: 17px;
+    }
+
+.other-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+    
+}
+
+.remember{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.signin-redirect{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.signin-redirect span{
+    color: rgb(154, 154, 154);
+
+}
+
+.signin-redirect a{
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+
+}
+
+.forgot-pass a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.forgot-pass a:hover,.signin-redirect a:hover{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.71);
+}
+
+.login-titles{
+display: flex;
+width: 100%;
+}
+
+
+.login-titles span{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: black;
+}
+
+
+
+/* forgot-new item section */
+#redir-log
+{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: red;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+}
+#redir-log:hover{
+    text-decoration: underline;
+}
+
+#instruction{
+    margin-bottom: 15px;
+    color: black;
+}
