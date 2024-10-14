@@ -1,0 +1,811 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, 'Geneva', Verdana, sans-serif
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+
+/* Navbar */
+
+
+
+
+header{
+    background-color: rgb(21, 21, 21);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 8000;
+    /* background-color: black; */
+}
+
+header.active{
+   
+    background-color: rgb(25, 25, 25);
+
+}
+
+
+
+.navbar{
+    /* background-color: black; */
+    max-width: 1400px;
+    margin:0 auto ;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    font-size: 1.2rem;
+    z-index: 1000;
+}
+
+/* .navbar .logo a{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: red;
+    letter-spacing: 2px;
+
+
+} */
+
+.navbar .logo{
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+
+.navbar .links{
+    display: flex;
+    align-items: center;
+}
+
+.navbar .links ul{
+list-style: none;
+display: flex;
+gap: 20px;
+align-items: center;
+justify-content: center;
+
+}
+
+
+.navbar .links li a{
+
+display: flex;
+align-items: center;
+
+
+text-decoration: none;
+font-size: 1rem;
+font-weight:450;
+padding: 0.4rem 0.8rem;
+border-radius: 5px;
+transition: 0.25s ease-in-out;
+color: white;
+letter-spacing: 0.7px;
+}
+
+.links li a:hover{
+    /* background-color: red; */
+    color: red;
+}
+
+
+/* Search Bar */
+
+.search-bar{
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+    transform: translateX(10%);
+   
+}
+
+.search-bar.move-search-input{
+    transform: translateX(13%);
+}
+
+.search-bar .search-btn{
+    display: flex;
+    align-items: center;
+    border-radius: 3.5px;
+    
+}
+
+
+
+.search-bar .search-btn input{
+ font-size: 0.9rem;
+ padding:7px 5px;
+ padding-left: 30px;
+ border: 0;
+ color: white;
+ background-color: rgba(0, 0, 0, 0.427);
+ border: 1px solid white;
+ border-radius: 3px;
+ outline: none;
+ pointer-events: none;
+transition:width 0.4s ease-in-out;
+transition:opacity 0.1s ease-in-out;
+opacity: 0;
+
+}
+
+
+
+.search-btn input.open-search{
+    opacity: 100%;
+    pointer-events:all;
+
+}
+
+.tools{
+    display: flex;
+    justify-items: flex-start;
+    gap: 25px;
+}
+
+
+
+
+.search-bar .search-btn a{
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;    
+    padding:7px 7px;
+   width:30px;
+    border-radius: 3px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    gap: 5px; 
+}
+
+.search-btn i.i-pos{
+    transform:translateX(22px);
+    
+}
+
+.search-btn a.button-pos{
+transform:translateX(-198px);
+
+}
+
+.search-bar .search-btn a span{
+    font-size:0.8rem;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.search-btn a span.wipe-search-txt{
+opacity: 0;
+pointer-events: none;
+}
+
+
+
+
+
+
+/* Login Button */
+.navbar .auth-btn{
+    display: flex;
+    align-items: center;
+}
+
+.navbar .auth-btn a{
+    display: flex;
+    align-items: center;
+    
+    border-color: gray;
+    color:white;
+    text-decoration: none;
+    padding: 0.35rem 1rem;
+    border-radius: 4px;
+    border: 1px solid white;
+    transition: 0.2s ease-in-out;
+}
+
+.navbar .auth-btn a:hover{
+
+    color: black;
+    background-color: white;
+}
+
+/* Profile */
+
+.account{
+    display: flex;
+    align-items: center;
+    
+}
+
+.navbar .account a img{
+    border-radius: 4px;
+}
+
+.navbar .account a{
+    color: white;
+    /* background-color: rgba(128, 128, 128, 0.626); */
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navbar .account a:hover{
+    /* background-color: rgba(128, 128, 128, 0.504); */
+    filter: brightness(1.2);
+}
+
+.account-menu hr{
+    border: 1px solid gray;
+    width: 90%;
+    margin:10px auto ;
+}
+
+
+.account .account-holder-name{
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.account .account-holder-name a{
+    background: transparent;
+}
+.account .account-holder-name a:hover{
+    background: transparent;
+}
+
+
+
+
+/* Navbar in Account-Info Wrapper */
+
+.account-menu-wrap{
+    background-color: rgba(39, 39, 39, 0.742);
+    /* padding: 10px; */
+    position: absolute;
+    top: 28%;
+    max-height: 0px;
+    right: 2%;
+    overflow: hidden;
+    width: 250px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    scale: 0.7;
+    z-index: -1;
+    
+
+    
+}
+
+
+
+.account-menu-wrap.open_menu{
+    max-height: 318.4px;
+    z-index: -1;
+    border: 2px solid white;
+    
+    
+}
+
+.account-menu{
+    padding:10px ;
+
+}
+
+.account-menu a{
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+#switch :hover{
+    color: rgb(205, 22, 22);
+}
+
+
+
+/* Account in User Info Only */
+
+.user-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    pointer-events: none;
+}
+
+.user-info img{
+height: 40px;
+/* border-radius: 50%;   */
+}
+.user-info span{
+    color:rgb(255, 255, 255);
+    /* text-transform: uppercase; */
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+
+/* sub link of Account Info */
+
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.sub-menu-link:hover{
+    box-shadow:0 0 5px rgba(253, 253, 253, 0.465);
+}
+
+.sub-menu-link i{
+
+   /* background-color: rgba(228, 228, 228, 0.824);  */
+   padding: 8px;
+   /* border: 1px solid white; */
+   /* border-radius: 50%; */
+}
+
+.sub-menu-link:hover i{
+    scale: 1.080;
+}
+
+.sub-menu-link p{
+    color: rgb(255, 255, 255);
+    font-weight: 550;
+}
+
+.sub-menu-link:hover p{
+    font-weight: 650;
+}
+
+
+.sub-menu-link span{
+    font-weight: bolder;
+}
+
+.sub-menu-link:hover span{
+
+    transform: translateX(5px);
+
+}
+
+
+/* Signup Recommendation */
+
+
+/* Footer */
+
+.footer{
+    padding: 30px 150px;
+    background-color: rgb(234, 234, 234);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 120px;
+
+}
+
+.footer .link-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    gap: 170px;
+}
+
+.footer .link-wrapper ul{
+    list-style: none;
+}
+
+li{
+    padding:7px 0;
+    font-size: 0.95rem;
+}
+li a{
+    color: rgb(135, 135, 135);
+    letter-spacing: -0.6px;
+    text-decoration: none;
+}
+
+li a:hover{
+    text-decoration: underline;
+}
+
+.contact a,.contact{
+    color: rgb(135, 135, 135);
+    text-decoration: none;
+}
+
+.contact a:hover{
+    text-decoration: underline;
+}
+
+
+/* Footer's Email */
+
+
+footer{
+    margin-top: auto;
+    
+}
+
+footer .email-fill{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+
+footer .email-fill input{
+        position: relative;
+        background-color: rgba(19, 19, 19, 0.7);
+        font-size: 1rem;
+        border: 1px solid rgba(128, 128, 128, 0.797);
+        color: white;
+        width: 600px;
+        padding: 0.5rem 1rem;
+        padding-top: 1.5rem;
+        border-radius: 4px;
+}
+
+footer .email-fill button{
+    width: 220px;
+    font-weight: 550;
+    color: white;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+footer .email-fill button:hover{
+    background-color: rgb(220, 8, 8);
+}
+
+footer .email-fill span{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    /* color: rgb(157, 157, 157); */
+    color: rgb(180, 180, 180);
+    top: 0%;
+    right: 822px;
+    width: 100px;
+    transform: translateY(38%);
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.footer-email .email-fill {
+    padding:0 150px;
+    margin: 20px auto;
+}
+
+footer .footer span{
+    color: rgb(175, 175, 175);
+}
+
+.recom-email-btm{
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.language #lang-btm{
+    position: relative;
+    transform: translate(-133px,2px);
+    color: white;
+}
+
+/* Language */
+
+.language select{
+    font-size: 1.1rem;
+    background-color: rgba(0, 0, 0, 0.676);
+    color: white;
+    padding:0.2rem 1.5rem;
+    border-radius: 5px;
+    padding-left: 2rem;
+    
+    }
+    
+    .language i{
+    
+        color: rgba(255, 255, 255, 0.817);
+        font-size: 1.4rem;
+        /* position: relative; */
+        transform: translate(135%,8%);
+        
+    }
+    
+
+
+
+
+
+/* Profile's pop menu */
+
+
+.profile-adder-wrapper{
+    background-color: rgba(23, 23, 23, 0.74);
+    position: absolute;
+    z-index: 15;
+    padding: 2rem 2.5rem;
+    /* display: none; */
+    scale: 0;
+    border-radius: 10px;
+    border: 1px solid gray;
+    top: 50%;                   
+    left: 50%;                   
+    transform: translate(-72%, -72%);
+    transition:opacity 0.4s ease-in-out;
+}
+
+
+.profile-adder{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 55vw;
+    max-height: 40vh;
+    gap: 50px;
+    overflow-y: scroll;
+    padding: 15px 8px;
+    
+}
+
+
+/* Scrollbar styling */
+
+::-webkit-scrollbar {
+    width: 12px;              
+    height: 12px;             
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px;      
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;    
+    border-radius: 10px;     
+    border: 2px solid #ccc;    
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;    
+}
+
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #333;   
+}
+
+
+.profile-adder input[type="radio"]{
+    display: none;
+    
+}
+
+/* Scrollbar styling completes */
+
+input[type="radio"]:checked~ .p-avtar img{
+    scale: 1.1;
+    border: 2px solid white;
+    
+}
+
+.profile-adder label img{
+    height: 120px;
+    transition: 0.2s ease-in-out;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+
+.new-user-info{
+    padding: 2rem 0;
+    
+}
+
+.new-user-info input{
+    padding: 0.5rem 0.9rem;
+    font-size: 1.2rem;
+    width: 20rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.kids{
+    display: flex;
+    padding: 15px 0;
+}
+
+.kids input{
+   width:25px;
+   accent-color:red;
+}
+
+.kids span{
+    color: white;
+    letter-spacing: 1px;
+}
+
+.btn{
+    padding: 0.6rem 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border: 0;
+    transition: 0.2s ease-in-out;
+}
+.btn:hover{
+    background-color: rgb(212, 0, 0);
+}
+
+
+
+
+/* completes here */
+
+.det-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 50vw;
+}
+
+.plan-det{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgb(41, 41, 41);
+    border-bottom: 1px solid rgb(41, 41, 41);
+    padding:20px 0;
+}
+.plan-sub-info{
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    gap: 5px;
+}
+
+.my-profile{
+    display: flex;
+    justify-content: space-between;
+    padding:20px 0;
+    align-items: center;
+}
+
+.profile{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 500;
+}
+
+#edit-profile,#delete-profile{
+    color: rgb(0, 145, 255);
+    cursor: pointer;
+}
+#edit-profile:hover,#delete-profile:hover{
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* Delete Confirmation */
+
+.delete-confirm{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    background-color: rgba(39, 39, 39, 0.838);
+}
+.delete-confirm.show{
+    display: block;
+}
+
+.delete-confirm span{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
+
+.delete-confirm .btns{
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding-top: 25px;
+}
+
+.btns button{
+padding: 0.8rem 3rem;
+border-radius: 5px;
+font-weight: 500;
+font-size: 1rem;
+cursor: pointer;
+border: 0;
+}
+
+#yes{
+    background-color: red;
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+#yes:hover{
+    background-color: rgb(254, 58, 58);
+}
+
+#no{
+    background-color: rgb(154, 154, 154);
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+#no:hover{
+    background-color: rgb(183, 183, 183);
+}
+
+.profile-actions{
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    margin: 120px 0;
+    margin-bottom: 180px;
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Watch TV Shows and Movies</title>
+    <link rel="stylesheet" href="/static/css/style-plan-select.css">
+    <script src="https://kit.fontawesome.com/658f1e5338.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar-index">
+            <div class="logo">
+                <!-- <a href="#">Netflix</a> -->
+                <a href="{% url 'index' %}"><img
+                        src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg"
+                        alt="Netflix-Logo" height="42"></a>
+            </div>
+            <a id="redir-log" href="{% url 'logout' %}">Sign out</a>
+
+
+
+        </div>
+    </header>
+
+
+
+      <!-- Pop Message -->
+
+      <div class="popup-message {% if messages %} pop-mess {% endif %}">
+        {% if messages %}
+        {% for message in messages %}
+        <span style="background-color: rgba(241, 16, 5, 0.822);border-color: rgb(167, 0, 0);">You don't have any Subscription plan. Subscribe a new plan.</span>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+
+    <!--  -->
+
+
+    <form method="post" action="{% url 'payment-page' %}">
+        {% csrf_token %}
+        <main>
+            <div class="login-wrapper">
+                <div class="step">
+                    <span>STEP <b>2 </b>OF<b> 3</b></span>
+                </div>
+                <div class="login-titles">
+                    <span>Choose the plan that’s right for you</span>
+                </div>
+
+                <!-- Plan Wrapper -->
+
+
+                <!-- Plan 1 -->
+                <div class="plan-wrapper">
+                    <label>
+                        <input type="radio" name="plan" value="Mobile" id="">
+                        <div class="plans">
+                            <div class="plan-name">Mobile <br> <span>480p</span><i id="pln1" class="fa-solid fa-circle-check"></i></div>
+                            <div class="plan-det">
+                                <div class="price">
+                                    <label for="month-price">Monthly price</label>
+                                    <span>₹149</span>
+                                </div>
+                                <hr>
+                                <div class="quality">
+                                    <label for="quality">Video and sound quality</label>
+                                    <span>Fair</span>
+                                </div>
+                                <hr>
+                                <div class="resol">
+                                    <label for="resolution">Resolution</label>
+                                    <span>480p</span>
+                                </div>
+                                <hr>
+                                <div class="support-device">
+                                    <label for="support-device">Supported devices</label>
+                                    <span>Mobile phone, tablet</span>
+                                </div>
+                                <hr>
+                                <div class="househeld-access">
+                                    <label for="househeld-access">Devices your household can watch at the same
+                                        time</label>
+                                    <span>1</span>
+                                </div>
+                                <hr>
+                                <div class="download-device">
+                                    <label for="downl-device">Download devices</label>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Plan 2 -->
+
+                    <label>
+                        <input type="radio" name="plan" value="Basic" id="" checked>
+                        <div class="plans" id="plan-popular">
+                            <div class="popular"><span id="most-popular">Most&nbsp;Popular</span></div>
+                            <div class="plan-name"
+                                style="background: linear-gradient(130deg,rgba(8, 8, 106, 0.874),rgba(106, 31, 255, 0.852));">
+                                Basic <br><span>720p</span><i id="pln2" class="fa-solid fa-circle-check"></i></div>
+                            <div class="plan-det">
+                                <div class="price">
+                                    <label for="month-price">Monthly price</label>
+                                    <span>₹199</span>
+                                </div>
+                                <hr>
+                                <div class="quality">
+                                    <label for="quality">Video and sound quality</label>
+                                    <span>Fair</span>
+                                </div>
+                                <hr>
+                                <div class="resol">
+                                    <label for="resolution">Resolution</label>
+                                    <span>720p (HD) </span>
+                                </div>
+                                <hr>
+                                <div class="support-device">
+                                    <label for="support-device">Supported devices</label>
+                                    <span>TV, computer, mobile phone, tablet</span>
+                                </div>
+                                <hr>
+                                <div class="househeld-access">
+                                    <label for="househeld-access">Devices your household can watch at the same
+                                        time</label>
+                                    <span>1</span>
+                                </div>
+                                <hr>
+                                <div class="download-device">
+                                    <label for="downl-device">Download devices</label>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Plan 3 -->
+
+                    <label>
+                        <input type="radio" name="plan" value="Standard" id="">
+                        <div class="plans">
+                            <div class="plan-name"
+                                style="background: linear-gradient(160deg,rgba(11, 11, 133, 0.861),rgba(127, 8, 201, 0.874));">
+                                Standard <br> <span>1080p</span><i id="pln3" class="fa-solid fa-circle-check"></i></div>
+                            <div class="plan-det">
+                                <div class="price">
+                                    <label for="month-price">Monthly price</label>
+                                    <span>₹499</span>
+                                </div>
+                                <hr>
+                                <div class="quality">
+                                    <label for="quality">Video and sound quality</label>
+                                    <span>Fair</span>
+                                </div>
+                                <hr>
+                                <div class="resol">
+                                    <label for="resolution">Resolution</label>
+                                    <span>1080p (Full HD)</span>
+                                </div>
+                                <hr>
+                                <div class="support-device">
+                                    <label for="support-device">Supported devices</label>
+                                    <span>TV, computer, mobile phone, tablet</span>
+                                </div>
+                                <hr>
+                                <div class="househeld-access">
+                                    <label for="househeld-access">Devices your household can watch at the same
+                                        time</label>
+                                    <span>2</span>
+                                </div>
+                                <hr>
+                                <div class="download-device">
+                                    <label for="downl-device">Download devices</label>
+                                    <span>2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Plan 4 -->
+
+                    <label>
+                        <input type="radio" name="plan" value="Premium" id="">
+                        <div class="plans">
+                            <div class="plan-name"
+                                style="background: linear-gradient(160deg,rgba(12, 12, 147, 0.799),rgba(255, 31, 31, 0.852));">
+                                Premium <br><span>4K + HDR</span><i id="pln4" class="fa-solid fa-circle-check"></i></div>
+                            <div class="plan-det">
+                                <div class="price">
+                                    <label for="month-price">Monthly price</label>
+                                    <span>₹649</span>
+                                </div>
+                                <hr>
+                                <div class="quality">
+                                    <label for="quality">Video and sound quality</label>
+                                    <span>Fair</span>
+                                </div>
+                                <hr>
+                                <div class="resol">
+                                    <label for="resolution">Resolution</label>
+                                    <span>4K (Ultra HD) + HDR</span>
+                                </div>
+                                <hr>
+                                <div class="support-device">
+                                    <label for="support-device">Supported devices</label>
+                                    <span>TV, computer, mobile phone, tablet</span>
+                                </div>
+                                <hr>
+                                <div class="househeld-access">
+                                    <label for="househeld-access">Devices your household can watch at the same
+                                        time</label>
+                                    <span>4</span>
+                                </div>
+                                <hr>
+                                <div class="download-device">
+                                    <label for="downl-device">Download devices</label>
+                                    <span>6</span>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                </div>
+
+
+
+
+                <div class="other-detail">
+                    <div class="forgot-pass">
+                        HD (720p), Full HD (1080p), Ultra HD (4K) and HDR availability subject to your internet service
+                        and device capabilities. Not all content is available in all resolutions. See our <a href="#">
+                            Terms of Use </a> for more details.
+                        Only people who live with you may use your account. Watch on 4 different devices at the same
+                        time with Premium, 2 with Standard, and 1 with Basic and Mobile.
+                    </div>
+
+                </div>
+                <button type="submit" id="signin-btn">Next</button>
+
+            </div>
+        </main>
+    </form>
+
+
+    <footer>
+        <div class="footer">
+            <div class="contact">
+                Questions? Call <a href="#">000-800-919-1694</a>
+            </div>
+            <div class="link-wrapper">
+                <div class="link1">
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Speed Test</a></li>
+                    </ul>
+                </div>
+                <div class="link2">
+                    <ul>
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Cookie Preferences</a></li>
+                        <li><a href="#">Legal Notices</a></li>
+                    </ul>
+                </div>
+                <div class="link3">
+                    <ul>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Ways to Watch</a></li>
+                        <li><a href="#">Corporate Information</a></li>
+                        <li><a href="#">Only on Netflix</a></li>
+                    </ul>
+                </div>
+                <div class="link4">
+                    <ul>
+                        <li><a href="#">Media Centre</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="language">
+
+                <select name="lang" id="lang">
+                    <option value="English">English</option>
+                    <option value="Hindi">हिन्दी</option>
+                </select>
+                <i id="lang-btm" class="fa-solid fa-language"></i>
+            </div>
+            <span>Netflix India</span>
+        </div>
+    </footer>
+
+    
+</body>
+
+</html>

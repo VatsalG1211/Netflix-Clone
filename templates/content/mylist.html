@@ -1,0 +1,82 @@
+{% extends 'content/base.html' %}
+
+{% block title %}<title>MyList</title>{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/style-mylist.css">
+{% endblock %}
+
+{% block headscript %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+
+<span style="color: white;margin:0 auto;margin-top: 150px;">{{message}}</span>
+
+{% endif %}
+
+
+{% include 'content/popup-movie.html' %}
+
+
+<main>
+
+    <div class="list-wrapper">
+
+        {% for season in seasons %}
+        
+    
+        <div class="list" data-season-id="{{season.season.season_id }}">
+            <span>{{season.counter}}</span>
+            <span class="c_id" style="display: none;">{{season.season.season_id}}</span>
+            <span class="_title">{{season.season.series.title}} S{{season.season.season_no}}</span>
+            <div class="poster-mini" style="background-image: url('/static/{{season.season.poster}}');"></div>
+            <form method="post">
+                {% csrf_token %}
+                <input style="display: none;" type="text" name="removeReq" value="{{season.season.season_id}}">
+                <button style="background: transparent;" type="submit"><i class="fa-solid fa-trash"></i></button>
+                
+            </form>
+            
+        </div>
+    {% endfor %}
+
+
+    <!-- For Movie -->
+
+    {% for movie in movies %}
+        
+    
+        <div class="list" data-season-id="{{movie.movie.movie_uid }}">
+            <span>{{movie.counter}}</span>
+            <span class="c_id" style="display: none;">{{movie.movie.movie_uid}}</span>
+            <span class="_title">{{movie.movie.title}}</span>
+            <div class="poster-mini" style="background-image: url('/static/{{movie.movie.poster}}');"></div>
+            <form method="post">
+                {% csrf_token %}
+                <input style="display: none;" type="text" name="removeReq" value="{{movie.movie.movie_uid}}">
+                <button style="background: transparent;" type="submit"><i class="fa-solid fa-trash"></i></button>
+                
+            </form>
+            
+        </div>
+    {% endfor %}
+        
+    </div>
+
+</main>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/script-mylist.js"></script>
+
+{% endblock %}
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/static/css/style-signup.css">
+    <script src="https://kit.fontawesome.com/658f1e5338.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar-index">
+            <div class="logo">
+                <!-- <a href="#">Netflix</a> -->
+                <a href="#"><img
+                        src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg"
+                        alt="Netflix-Logo" height="42"></a>
+            </div>
+            <a id="redir-log" href="{% url 'logout' %}">Sign out</a>
+
+
+
+        </div>
+    </header>
+
+    <main>
+        <form method="post">
+            {% csrf_token %}
+            <div class="login-wrapper">
+                <span id="mess"></span>
+                <div class="login-titles"
+                    style="justify-content: center;margin-bottom: 25px;font-size: 2rem;color: rgb(227, 0, 0);">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="step" style="text-align: center;font-size: 0.8rem;margin-bottom:10px;">
+                    <span style="font-size: 0.8rem;">STEP <b>3 </b>OF<b> 4</b></span>
+                </div>
+                <div class="login-titles" style="text-align: center;justify-content: center;">
+                    <span>Choose how to pay</span>
+                </div>
+                <div class="recomm"
+                    style="text-align: center;display: flex;flex-direction: column;justify-content: center;">
+                    <span style="color: rgba(0, 0, 0, 0.733);">
+                        Your payment is encrypted and you can change your payment method at anytime.
+                    </span>
+                    <span style="color: rgba(0, 0, 0, 0.714);margin-top: 10px;">
+                        <b> Secure for peace of mind.</b>
+                    </span>
+                    <span style="color: rgba(0, 0, 0, 0.614);font-size: 1.15rem;"><b>Cancel easily online.</b></span>
+                </div>
+                <button id="signin-btn">Pay Now</button>
+
+            </div>
+        </form>
+    </main>
+
+
+    <!-- Payment Integration -->
+
+
+
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "{{apikey}}", // Enter the Key ID generated from the Dashboard
+            "amount": "{{amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Netflix Clone", //your business name
+            "description": "Test Transaction",
+            "image": "https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg",
+            "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+           "callback_url": "{% url 'payment-info' %}",
+            "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+                "name": "Gaurav Kumar", //your customer's name
+                "email": "{{email}}",
+                "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+        document.getElementById('signin-btn').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+
+
+
+
+
+    <!-- integration completes -->
+
+
+
+    <footer>
+        <div class="footer">
+            <div class="contact">
+                Questions? Call <a href="#">000-800-919-1694</a>
+            </div>
+            <div class="link-wrapper">
+                <div class="link1">
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Speed Test</a></li>
+                    </ul>
+                </div>
+                <div class="link2">
+                    <ul>
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Cookie Preferences</a></li>
+                        <li><a href="#">Legal Notices</a></li>
+                    </ul>
+                </div>
+                <div class="link3">
+                    <ul>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Ways to Watch</a></li>
+                        <li><a href="#">Corporate Information</a></li>
+                        <li><a href="#">Only on Netflix</a></li>
+                    </ul>
+                </div>
+                <div class="link4">
+                    <ul>
+                        <li><a href="#">Media Centre</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="language">
+
+                <select name="lang" id="lang">
+                    <option value="English">English</option>
+                    <option value="Hindi">हिन्दी</option>
+                </select>
+                <i id="lang-btm" class="fa-solid fa-language"></i>
+            </div>
+            <span>Netflix India</span>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>

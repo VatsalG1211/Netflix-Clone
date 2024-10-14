@@ -1,0 +1,131 @@
+<div class="pop-movie">
+    <button class="pop-close"><i class="fa-solid fa-x"></i></button>
+    <div class="plyr__video-embed" id="player">
+       
+
+    </div>
+    <div class="fade"></div>
+
+    <div class="pop-detail-wrapper">
+
+        <div class="vid-info">
+            <div class="movie-logo">
+                <img src="#" height="50">
+            </div>
+            <div class="pops-btn">
+                <a id="play-btn2" href="#"><i class="fa-solid fa-play"></i>&nbsp;&nbsp;Play</a>
+
+                <form method="post" class="addlistform">
+                    {% csrf_token %}
+                   <label>
+                    <input type="text" class="c_id" name="c_id" value="">
+              
+                    <!-- <a class="i-mod add_list bgchange"><i class="fa-solid fa-check"></i></a> -->
+          
+                    <a class="i-mod add_list"><i class="fa-solid fa-plus"></i></a>
+                   
+                   </label>
+                   
+            </form>
+
+            <form method="post" class="addlikeform">
+                {% csrf_token %}
+               <label>
+                <input type="text" class="c_id" name="c_id" value="">
+          
+                <!-- <a class="i-mod add_list bgchange"><i class="fa-solid fa-check"></i></a> -->
+      
+                <a class="i-mod add_like">
+                    <i class="fa-solid fa-thumbs-up"
+                    style="transform: translateY(-2.5px);"></i></a>
+               
+               </label>
+               
+        </form>
+
+                
+
+                <div id="sound" style="opacity: 50%;">
+                    <a id="mute" class="i-mod" style="padding: 8px 7px;cursor: pointer;" >
+                        <i class="fa-solid fa-volume-high" style="transform: translateY(0.5px);"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="main-info">
+                <div class="info1">
+                    <div class="sub-info-1-wrapper">
+                        <a> <span id="released_date"></span> &nbsp;<span
+                                style="border: 1.5px solid rgb(100, 100, 100);padding:0 6.5px;margin-right: 3px;">A</span>
+                            <span id="total_seasons"></span>
+                            <span
+                                style="margin-left: 3px   ;font-size: 0.8rem;border-radius: 5px;border: 1px solid rgb(84, 84, 84);padding:1px 5px;">
+                                HD
+                            </span></a>
+                    </div>
+                    <div class="sub-info-2-wrapper">
+                        <div class="sub-info-2_1" style="font-size: 1.2rem;margin-bottom: 15px;">
+                            <span style="font-weight:600;" id="content-title"></span>
+                            <a style="font-weight:400;"></a>
+                        </div>
+                        <div class="sub-info-2_2" style="font-size: 1rem;font-weight:300">
+                            <a id="description">
+                               
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="info2" style="margin-top:15px;">
+                    <div class="cast">
+                        <span style="color: rgba(107, 107, 107, 0.849);">Cast :</span>
+                        
+                        <a id="actor" style="font-size: 1rem;font-weight:400"></a>
+                     
+                        <a style="font-size: 1rem;font-weight:400">and more</a>
+                    </div>
+                    <div class="genres">
+                        <span style="color: rgba(107, 107, 107, 0.849);">Genres :</span>
+                        
+                        <a id="genres" style="font-size: 1rem;font-weight:400"></a>
+<!--                        
+                        <a style="font-size: 1rem;font-weight:400">and more</a> -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-wrapper">
+                <div class="episode-title">
+                    <span style="color: white;font-size: 1.5rem;font-weight: 500;">Episodes</span>
+                    <select name="seasons" id="season" class = "seasons">
+                        <!-- {% for i in seasons.first.series.season.all %}
+                        {% if i.season_no == season.season_no %}
+                        <option selected value="{{i.season_no}}">Season {{i.season_no}}</option>
+                        {% else %}
+                        <option value="{{i.season_no}}">Season {{i.season_no}}</option>
+                        {% endif %}
+                        {% endfor %} -->
+                    </select>
+                    
+                </div>
+                <div id="loading-indicator" class="netflix-spinner" style="display: none;"></div>
+            
+        
+
+                <!-- Episodes -->
+
+
+
+                <!-- Episodes Completes -->
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+

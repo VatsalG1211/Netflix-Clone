@@ -1,0 +1,95 @@
+{% extends 'content/base.html' %}
+
+
+{% block title %} <title>Profile - Account</title>{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/style-account.css">
+{% endblock %}
+
+
+{% block content %}
+
+<main>
+    <form method="post">
+        {% csrf_token %}
+        <div class="profile-adder-wrapper">
+            <div class="profile-adder">
+                {% for i in avatar %}
+                {% if profile.profile_pic.avatar == i.avatar %}
+                <label>
+                    <input type="radio" name="profile" checked value="{{i.avatar}}">
+                    <div class="p-avtar">
+                        <img src="/static/{{i.avatar}}" alt="">
+                    </div>
+                </label>
+                {% else %}
+                <label>
+                    <input type="radio" name="profile" value="{{i.avatar}}">
+                    <div class="p-avtar">
+                        <img src="/static/{{i.avatar}}" alt="">
+                    </div>
+                </label>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="new-user-info">
+                <input type="text" placeholder="Profile Name" name="name" id="name" value="{{profile.name}}" required>
+                <div class="kids">
+                    {% if profile.is_kid %}
+                    <input type="checkbox" name="is_kid" checked value="True">
+                    {% else %}
+                    <input type="checkbox" name="is_kid" value="True">
+                    {% endif %}
+                    <span>KIDS</span>
+                </div>
+    
+                <button class="btn" id="add-profile-btn" type="submit">Update Profile</button>
+            </div>
+    </form>
+    <button class="btn" style="background-color: gray;" onclick="add_profile()">Cancel</button>
+    </div>
+    
+    <form action="delete-profile/">
+    <div class="delete-confirm">
+        <span>Are sure to delete your profile ?</span>
+        <div class="btns">
+            <button type="submit" id="yes">Yes</button>
+        </form>
+            <button type="button" onclick="delete_profile()" id="no">No</button>
+        </div>
+    </div>
+    
+    <div class="det-wrapper">
+        <div class="plan-det">
+            <span style="color: rgb(135, 135, 135);">PLAN DETAILS</span>
+            <div class="plan-sub-info">
+                <span style="font-weight: 500;margin-right: 25px;">Type :
+                    <span style="font-weight: 400;">{{plan}}</span>
+                </span>
+                <span style="font-weight: 500;margin-right: 25px;">Subscription ID :
+                    <span style="font-weight: 400;">{{sub_id}}</span>
+                </span>
+            </div>
+        </div>
+        <div class="my-profile">
+            <span style="color: rgb(135, 135, 135);">MY PROFILE</span>
+            <div class="profile">
+                <img src="/static/{{profile.profile_pic.avatar}}" alt="" height="30">
+                <span>{{profile.name}}</span>
+            </div>
+            <div class="profile-actions">
+                <a onclick="add_profile()" id="edit-profile">Edit Profile</a>
+                <a onclick="delete_profile()" id="delete-profile">Delete Profile</a>
+            </div>
+        </div>
+    </div>
+    
+    
+</main>
+{% endblock %}
+
+
+
+{% block script %}
+<script src="/static/js/script-account.js"></script>
+{% endblock %}

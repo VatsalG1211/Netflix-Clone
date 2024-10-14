@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/css/style-profile.css">
+    <script src="https://kit.fontawesome.com/658f1e5338.js" crossorigin="anonymous"></script>
+
+<body>
+
+  
+
+
+<!-- Profile Adder Pop Window -->
+    <form method="post">
+        {% csrf_token %}
+        
+    <div class="profile-adder-wrapper"> 
+        <div class="profile-adder">
+            {% for i in avatar %}
+            <label>
+                <input type="radio" name="profile" checked value="{{i.avatar}}">
+                <div class="p-avtar">
+                    <img src="/static/{{i.avatar}}" alt="">
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+        <div class="new-user-info">
+            <input type="text" placeholder="Profile Name" name="name" id="name" required>
+            <div class="kids">
+             <input type="checkbox" name="is_kid" value="True">
+             <span>KIDS</span>
+            </div>
+            
+             <button class="btn" id="add-profile-btn" type="submit">Add Profile</button>
+        </div>
+    </form>
+        <button class="btn" style="background-color: gray;" onclick="add_profile()" >Cancel</button>
+    </div>
+
+
+<!-- Profile's List -->
+
+    <div class="profile-wrapper">
+        <div class="profile-section">
+            <a href="{% url 'logout' %}" 
+        style="
+        background-color: rgb(214, 10, 10);
+        color: white;
+        text-decoration: none;
+        padding:0.9rem 1.5rem;
+        border-radius: 5px;
+        position: relative;
+        left: 43%;
+        bottom: 22%;
+        ">Sign Out</a> 
+            <span id="profile-panel-title">Who is watching ?</span>
+            <div class="profile-panel">
+                {% for profile in profiles %}
+                <!-- {% url 'profile-redirector' profile_id=profile.profile_id %} -->
+                <a onclick="redirectToPage('{{profile.profile_id}}')">
+                    <div class="profile">
+                        <img src="/static/{{profile.profile_pic}}">
+                        <span>{{profile.name}}</span>
+                    </div>
+                </a>
+                {% endfor %}
+
+
+
+                <a onclick="add_profile()" {% if no_of_profile >= 5 %}style="display:none;"{% endif %}>
+                    <div id="adder"  class="profile">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <span>Add Profile</span>
+                    </div>
+                </a>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="/static/js/script-profile.js"></script>
+    </head>
+</body>
+
+</html>

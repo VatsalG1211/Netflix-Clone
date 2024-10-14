@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<title>Content</title>
+
+<link rel="stylesheet" href="/static/css/style-content.css">
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://kit.fontawesome.com/658f1e5338.js" crossorigin="anonymous"></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+<style>
+
+.plyr__control--overlaid{
+    background: red;
+}
+
+.plyr--full-ui input[type=range]{
+    color: red;
+}
+
+.plyr--video .plyr__control:focus-visible, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+    background: red;
+}
+
+</style>
+</head>
+
+<body>
+<!-- https://m.media-amazon.com/images/M/MV5BNjIxOTYwMDEtNTlhZC00MjUzLTg4NTItNjdmMzliMDc4ZjhkXkEyXkFqcGc@._V1_FMjpg_UX2160_.jpg -->
+<!-- <i id ="back" class="fa-solid fa-arrow-left-long" onclick="goToPreviousPage()"></i> -->
+<div class="content-short-info">
+    <a id="back" onclick="goToPreviousPage()"><i class="fa-solid fa-arrow-left-long"></i></a>
+    {% if c_type == "series" %}
+    <span>Chapter {{episode_no}}: {{name}}</span>
+    {% else %}
+    <span> {{name}}</span>
+    {% endif %}
+    
+</div>
+        <div class="plyr__video-embed" id="player" >    
+            <iframe
+                src="{{url}}"
+                allowfullscreen
+                allow="autoplay; encrypted-media"
+                autoplay
+            ></iframe>
+        </div>
+
+
+<!-- 
+ <video class="plyr__video-embed" id="player" width="100%"> 
+    <source src="https://www.zmb.ie/TV/Stranger%20Things/Stranger.Things.S01E01.720p.BluRay.x264-GalaxyTV.mkv">
+    Your browser does not support HTML5 video or the video have x265 HEVC codec which cannot be played online.
+    </video> -->
+
+    
+
+
+
+
+<script src="/static/js/script-content.js"></script>
+<script>
+    const player = new Plyr('#player',{autoplay: true});
+    function goToPreviousPage() {
+    window.history.back();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,612 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, 'Geneva', Verdana, sans-serif
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color:black;
+    overflow-x: hidden;
+}
+
+
+
+
+
+/* Popup Message */
+
+.popup-message{
+    background-color: rgba(202, 0, 0, 0.763);
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    margin: 0 auto;
+    transition: 0.4s ease-in-out;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 2px solid red;
+    opacity:0%;
+    overflow: hidden;
+    transform: translateY(-150px);
+
+}
+.popup-message span{
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    padding: 5px 10px;
+}
+
+.pop-mess{
+    opacity: 100%;
+    transform: translateY(0);
+}
+
+
+
+
+/* Navbar */
+
+header{
+    background:linear-gradient(rgba(0, 0, 0, 1),rgba(0, 0, 0, 0));
+    /* position: sticky;
+    top: 0;
+    z-index: 1000; */
+}
+
+
+
+.navbar-index{
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+    max-width: 1400px; 
+}
+
+.index-btn{
+    display: flex;
+    gap: 10px;
+}
+
+.index-btn #signin{
+    padding: 0.4rem 1rem;
+    font-size: 0.90rem;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(235, 7, 7);
+    border: 0.3px solid rgba(77, 76, 76, 0.232);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.index-btn #signin:hover{
+    background-color: rgb(208, 6, 6);
+}
+
+/* Background Image */
+
+.banner-movies{
+    background-image: url('/static/img/bg_landpage.jpg');
+    background-size: cover;
+    width: 100vw;
+    overflow:hidden;
+    position: absolute;
+    height: 100vh;
+    opacity: 40%;
+    z-index: -5;
+    border-bottom: 5px solid red;
+}
+
+/* Signup Recommendation */
+
+.signup-recommend{
+color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding:18vh 31vw;
+gap:20px;
+text-align: center;
+background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.416),rgba(0, 0, 0, 0.658));
+height: 100vh;
+}
+
+.signup-recommend h1{   
+    font-size:3.5rem;    
+    font-weight: 900;
+    line-height: 1.2;
+    
+}
+
+.signup-recommend a{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.signup-recommend span{
+    margin-top: 15px;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 480;
+}
+
+.email-fill{
+    display: flex;
+    gap: 10px;
+    margin: 0 auto;
+    
+}
+
+
+
+.signup-recommend .email-fill input{
+        position: relative;
+        background-color: rgba(19, 19, 19, 0.7);
+        font-size: 1rem;
+        border: 1px solid rgba(128, 128, 128, 0.797);
+        color: white;
+        width: 370px;
+        padding: 0.5rem 1rem;
+        padding-top: 1.5rem;
+        border-radius: 4px;
+}
+
+.signup-recommend .email-fill button{
+    width: 220px;
+    font-weight: 700;
+    color: white;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.signup-recommend .email-fill button:hover{
+    background-color: rgb(220, 8, 8);
+}
+
+.signup-recommend .email-fill span{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: rgb(157, 157, 157);
+    top: 0%;
+    right: 85%;
+    width: 100px;
+    transform: translateX(35%);
+    transform: translateY(15%);
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+/* Language */
+
+.language select{
+font-size: 1.1rem;
+background-color: rgba(0, 0, 0, 0.676);
+color: white;
+padding:0.2rem 1.5rem;
+border-radius: 5px;
+padding-left: 2rem;
+
+}
+
+.language i{
+
+    color: rgba(255, 255, 255, 0.817);
+    font-size: 1.4rem;
+    /* position: relative; */
+    transform: translate(135%,8%);
+    
+}
+
+
+
+
+
+
+
+/* Movie List Slider */
+
+.movie-list-slider{
+    /* background-color: aqua; */
+    width: 70vw;
+    display: flex;
+    gap: 32px;
+    overflow: hidden;
+    /* padding: 10px; */
+    padding:15px 25px ;
+    padding-left: 8px;
+}
+
+/* Image silde's Images Poster of Movie */
+
+/* Poster style Start */
+
+.movie-list {
+border-radius: 8px;
+background-size: cover  ;
+object-fit: cover;
+height: 260px;
+width: 190px;
+border: 1px solid rgb(159, 159, 159,0.3);
+transition: transform 0.4s ease-in-out,scale 0.25s ease-in-out;
+
+}
+
+.movie-list:hover{
+    scale: 1.035;
+}
+
+
+/* POster Style End */
+
+
+.movie-slider-wrapper{
+    display: flex;
+    align-items: center;
+    gap:12px;   
+    margin-top: 10px;
+}
+
+/* slider button */
+
+.movie-slider-wrapper #prev,#next{
+    padding: 5px 8px;
+    height: 140px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(25, 25, 25);
+    color: gray;
+    border: 0;
+    font-size: 1.1rem;
+    transition: 0.4s ease-in-out;
+}
+#prev i{
+    transform: rotate(180deg);
+}
+#prev{
+opacity: 0;
+    
+}
+
+
+.movie-slider-wrapper #prev:hover,#next:hover{
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+
+/* Trending Content with Slider */
+
+.trending-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 150px;
+}
+
+.trending-content span{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    transform: translateY(10px);
+}
+
+.trending-content select{
+        padding: 0.5rem 1.2rem;
+        color: white;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: rgba(0, 0, 0, 0.676);
+        margin-right: 15px;
+}
+
+/* Features Section */
+
+.features-index{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    padding:50px 150px;
+
+}
+
+.features-index span{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.features-index .card-container{
+    display: flex;
+    gap: 15px;
+   
+
+}
+
+.card-container .card{
+    display: flex;
+    flex-direction: column;
+    background:linear-gradient(150deg,rgba(63, 115, 168, 0.311),rgba(92, 3, 92, 0.447));
+    width: 290px;
+    height: 270px;
+    border-radius: 10px;
+    gap: 20px;
+    padding:0 20px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.card-container .card span{
+font-size: 1.4rem;
+font-weight: 600;
+color: white;
+}
+
+.card-container .card a{
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.621);
+}
+
+.card img{
+    margin-top: 40px;
+    height: 45px;
+    width: 70px;
+    position: relative;
+    bottom: 0;
+    left: 190px;
+    opacity: 70%;
+}
+
+/* card's img icon  */
+
+#tv{
+    /* background:linear-gradient(rgba(165, 42, 42, 0.436),rgba(0, 0, 95, 0.331)); */
+    border-radius: 15px;
+    filter:brightness(50);
+    mix-blend-mode:color-dodge;
+    opacity: 50%;
+    scale: 1.040;
+}
+
+
+#down-btn{
+    height:66px;
+    bottom: 15px;
+    scale: 0.85;
+    mix-blend-mode:color-dodge;
+}
+
+#tel-img{
+    height:65px;
+    bottom: 5px;
+    scale: 0.85;
+    mix-blend-mode:color-dodge;
+}
+
+#avtar-img{
+    height:66px;
+    bottom: 25px;
+    scale: 0.85;
+    border-radius: 10px;
+    mix-blend-mode:color-dodge;
+    opacity: 100%;
+    filter: brightness(1.2);
+}
+
+
+
+
+
+
+/* FAQ */
+
+
+
+
+.faq-wrapper{
+    margin: 10px auto;
+    padding: 0 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 60px;
+}
+
+.faq{
+
+overflow: hidden;
+color: white;
+}
+
+.ques{
+    padding: 25px 30px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: rgb(52, 52, 52);
+    margin-bottom: 0.9px;
+    transition: 0.3s ease-in-out;
+}
+
+.ques:hover{
+    background-color: rgb(69, 69, 69);
+}
+
+.ques span{
+    font-size:1.8rem;
+    font-weight:1;
+    scale: 2.2;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.ques span.active{
+    transform: rotate(45deg);
+}
+
+.answer{
+
+    padding: 0px 30px;
+    height: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    transition: 0.3s ease-in-out;
+    background-color: rgb(52, 52, 52);
+
+}
+
+.active .answer{
+    padding: 25px 30px;
+}
+
+.faq-title{
+    margin:10px 0;
+
+}
+
+.faq-title span{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Footer */
+
+footer{
+    margin-top: auto;
+}
+
+.footer{
+    padding: 30px 150px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 120px;
+
+}
+
+.footer .link-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    gap: 170px;
+}
+
+.footer .link-wrapper ul{
+    list-style: none;
+}
+
+li{
+    padding:7px 0;
+    font-size: 0.95rem;
+}
+li a{
+    color: rgb(175, 175, 175);
+    letter-spacing: -0.6px;
+}
+
+.contact a,.contact{
+    color: rgb(175, 175, 175);
+}
+
+
+/* Footer's Email */
+
+
+footer .email-fill{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+
+footer .email-fill input{
+        position: relative;
+        background-color: rgba(19, 19, 19, 0.7);
+        font-size: 1rem;
+        border: 1px solid rgba(128, 128, 128, 0.797);
+        color: white;
+        width: 600px;
+        padding: 0.5rem 1rem;
+        padding-top: 1.5rem;
+        border-radius: 4px;
+}
+
+footer .email-fill button{
+    width: 220px;
+    font-weight: 550;
+    color: white;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+footer .email-fill button:hover{
+    background-color: rgb(220, 8, 8);
+}
+
+footer .email-fill span{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    /* color: rgb(157, 157, 157); */
+    color: rgb(180, 180, 180);
+    top: 0%;
+    right: 822px;
+    width: 100px;
+    transform: translateY(38%);
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.footer-email .email-fill {
+    padding:0 150px;
+    margin: 20px auto;
+}
+
+footer .footer span{
+    color: rgb(175, 175, 175);
+}
+
+.recom-email-btm{
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.language #lang-btm{
+    position: relative;
+    transform: translate(-133px,2px);
+    color: white;
+}
+
+

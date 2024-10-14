@@ -1,0 +1,86 @@
+body{
+    background-image: url('/media/img/lost-way.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+#container{
+
+    background: linear-gradient(90deg,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.409),rgba(0, 0, 0, 0));
+    height: 100vh;
+    width: 100vw;
+  
+}
+
+#lost-path{
+    margin: 0 auto;
+    width: 50vw;
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
+#home{
+    background-color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;  
+}
+#home:hover{
+    background-color: rgba(255, 255, 255, 0.882);
+}
+
+
+
+#error{
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+
+}
+
+h1{
+    color: white;
+    font-size: 5rem;
+    text-align: center;
+    margin: 15px 0;
+}
+
+header{
+    background:linear-gradient(rgba(0, 0, 0,0.95),rgba(0, 0, 0, 0));
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 8000;
+    background-color: black;
+}
+
+
+.navbar{
+    /* background-color: black; */
+    max-width: 1400px;
+    margin:0 auto ;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    font-size: 1.2rem;
+    z-index: 1000;
+}
+
+.navbar .logo{
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}

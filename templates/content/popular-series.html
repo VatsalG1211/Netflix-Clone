@@ -1,0 +1,99 @@
+<!-- Popular Movie List -->
+
+<div class="popular-movie-list-wrapper">
+    <div class="title-popular">
+        <span>{{slider_name}}</span>
+    </div>
+    <div class="slider-wrapper">
+        <button class="prev-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="slider-movie">
+
+            {% for season in popular_seasons %}
+
+
+
+            <div class="post-wrap" data-season-id="{{season.season_id }}" style="width: 225px;">
+                <!-- POP Message -->
+
+                <!--  -->
+                <div class="movie-posters" style="background-image: url('/static/{{season.poster}}');transform: translateX(45px);background-size: 178px 115px;width: 178px;
+                    height: 115px;">
+                    <div class="vid-btn">
+
+                    </div>
+                    <div class="additional-detail">
+                        <div class="pops-btn-addit">
+                            <form>
+                                <a href="/content/series/{{season.episode.first.id}}" class="i-mod"
+                                    style="padding: 5px 10px;padding-top: 9px;"><i class="fa-solid fa-play"></i></a>
+                            </form>
+                            <form method="post" class="addlistform">
+                                {% csrf_token %}
+                                <label>
+                                    <input type="hidden" class="c_id" name="c_id" value="{{season.season_id }}">
+                                    {% if season.season_id in mylist %}
+                                    <a class="i-mod add_list bgchange" data-season-id="{{season.season_id }}"><i
+                                            class="fa-solid fa-check"></i></a>
+                                    {% else %}
+                                    <a class="i-mod add_list" data-season-id="{{season.season_id }}"><i
+                                            class="fa-solid fa-plus"></i></a>
+                                    {% endif %}
+
+                                </label>
+
+
+                            </form>
+
+                            <form method="post" class="addlikeform">
+                                {% csrf_token %}
+                                <label>
+                                    <input type="hidden" class="c_id" name="c_id" value="{{season.season_id }}">
+
+                                    {% if season.season_id in likedlist %}
+                                    <a class="i-mod add_like bgchange" data-season-id="{{ season.season_id }}"><i
+                                            class="fa-solid fa-thumbs-up"
+                                            style="transform: translateY(-2.5px);"></i></a>
+                                    {% else %}
+                                    <a class="i-mod add_like" data-season-id="{{ season.season_id }}"><i
+                                            class="fa-solid fa-thumbs-up"
+                                            style="transform: translateY(-2.5px);"></i></a>
+                                    {% endif %}
+
+                                </label>
+                            </form>
+                            <form>
+                                <a class="i-mod pop-btn" style="position: relative;left: 220%;">
+                                    <i style="transform: rotate(90deg) translate(-3px,0px) scaleY(1.5);font-size: 0.8rem;width:18px;"
+                                        class="fa-solid fa-greater-than" style="font-size: 0.5rem;"></i>
+                                </a>
+                            </form>
+
+
+                        </div>
+                        <div class="episode-short-detail">
+                            <!-- <span style="font-weight:600;">S6:E2 </span><a style="font-weight:400;">"Carrot and
+                                        Stick"</a> -->
+                            <a style="font-weight:400;">{{season.series.title}} </a><span
+                                style="font-weight:600;">Season {{season.season_no}} </span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <span class="popular-rank-number">{{forloop.counter }}</span>
+            </div>
+
+
+
+
+            {% endfor %}
+
+
+        </div>
+        <button class="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+</div>
+
+
+<!--  -->

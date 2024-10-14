@@ -1,0 +1,49 @@
+<!-- If Banner Ad is Series -->
+
+{% if c_type == "series" %}
+<div class="main-banner-image" style="background-image: url('/static/{{banner_ad.banner_img}}');"></div>
+<div class="divider"></div>
+<div class="l-fade"></div>
+    <div class="left-description">
+        <div class="movie-short-det">
+            <div class="banner-movie-logo">
+                <img src="/static/{{banner_ad.series.title_img}}" alt="{{banner_ad.series.title}}">
+            </div>
+            <div class="descrip">
+                <span>{{banner_ad.description}}</span>
+            </div>
+            <div class="detail-btn">
+                <a id="play-btn" href="/content/series/{{banner_ad.episode.first.id}}"><i class="fa-solid fa-play"></i>&nbsp;&nbsp;Play</a>
+                <a id="info-btn" data-season-id="{{banner_ad.season_id}}" ><i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;More Info</a>
+            </div>
+        </div>
+
+    </div>
+
+{% else %}
+
+<!-- If Banner Ad is Movie -->
+
+<div class="main-banner-image" style="background-image: url('/static/{{banner_ad.banner_img}}');"></div>
+<div class="divider"></div>
+<div class="l-fade"></div>
+    <div class="left-description">
+        <div class="movie-short-det">
+            <div class="banner-movie-logo">
+                <img src="/static/{{banner_ad.title_img}}" alt="{{banner_ad.title}}">
+            </div>
+            <div class="descrip">
+                <span>{{banner_ad.description}}</span>
+            </div>
+            <div class="detail-btn">
+                <a id="play-btn" href="/content/movie/{{banner_ad.id}}"><i class="fa-solid fa-play"></i>&nbsp;&nbsp;Play</a>
+                <a id="info-btn" data-season-id="{{banner_ad.movie_uid}}"><i class="fa-solid fa-circle-info" ></i>&nbsp;&nbsp;More Info</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endif %}
+
+
+ 

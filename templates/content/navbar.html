@@ -1,0 +1,89 @@
+  <!-- Navbar -->
+
+
+
+
+
+  <header>
+    <div class="navbar">
+        <div class="logo">
+            <!-- <a href="#">Netflix</a> -->
+            <a href="{% url 'home' %}"><img
+                    src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg"
+                    alt="Netflix-Logo" height="32"></a>
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'tv-shows' %}">TV Shows</a></li>
+                <li><a href="{% url 'movies' %}">Movies</a></li>
+                <li><a href="#">Recently Added</a></li>
+                <li><a href="{% url 'mylist-page' %}">My List</a></li>
+            </ul>
+        </div>
+
+        <div class="tools">
+
+            {% if current_page == "home" %}
+            <div class="search-bar" id="search-bar">
+                <div class="search-btn">
+                    <form>
+                    <input type="text" id="searchbar" placeholder="Titles, peoples, genres" />
+                    <button style="display: none;"></button></form>
+                    <a id="search" onclick="toogleSearch()"><i id="search-icon"
+                            class="fa-solid fa-magnifying-glass"></i></a>
+                    <a onclick="closeSearch()" id="close-search"><i class="fa-solid fa-x"></i></a>
+                </div>
+            </div>
+            {% endif %}
+
+       
+
+            <div class="account">
+                <a onclick="toogleMenu()"><img src="/static/{{profile.profile_pic}}" alt="" height="38"></a>
+                <div onclick="toogleMenu()" class="account-holder-name">
+                    <a id="usrname">{{profile.name}}</a>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="account-menu-wrap" id="menu_wrapper">
+            <div class="account-menu">
+                <a id="switch" href="{% url 'profile-page' %}">
+                <div class="user-info">
+                    <img src="/static/img/profile_img/avatar.png" alt="profile_img" />
+                    <span>Switch Profile</span>
+                </div>
+            </a>
+                
+                <hr>
+
+
+
+                <a href="{% url 'profile-account' %}" class="sub-menu-link">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <p>Account</p>
+                    <span>></span>
+                </a>
+
+                <a href="#" class="sub-menu-link">
+                    <i class="fa-regular fa-circle-question"></i>
+                    <p>Help & Support</p>
+                    <span>></span>
+                </a>
+
+                <a href="{% url 'logout' %}" class="sub-menu-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</header>
