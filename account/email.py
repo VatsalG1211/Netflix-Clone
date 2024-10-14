@@ -11,9 +11,9 @@ def send_email_activation_link(email,email_token):
     body = f"You need to click on this link to activate your account :\n{full_link}"
     from_email = settings.EMAIL_HOST_USER
 
-    print(body)
+    # print(body)
 
-    # send_mail(subject,body,from_email,[email])
+    send_mail(subject,body,from_email,[email])
 
 def send_password_reset_link(email,email_token):
 
@@ -25,6 +25,6 @@ def send_password_reset_link(email,email_token):
     '''
     from_email = settings.EMAIL_HOST_USER
 
-    print(body)
+    # print(body)
 
-    # send_mail(subject,body,from_email,[email])
+    send_mail(subject,body,from_email,[email])
