@@ -28,11 +28,3 @@ urlpatterns = [
     path('profile/account/delete-profile/',profile_account_delete,name="profile-account-delete"),
 ]
 
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-# else:
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# urlpatterns+=staticfiles_urlpatterns()
