@@ -1,0 +1,4 @@
+Django==5.1
+Django==5.1.2
+locustio==0.999
+razorpay==1.4.2
