@@ -150,12 +150,12 @@ STATICFILES_DIRS = [  # Corrected this line
     os.path.join(BASE_DIR, "public", "static"),
 ]
 
-STATIC_ROOT = '/home/ubuntu/project/public/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = STATIC_ROOT = '/home/ubuntu/project/public/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,"public","static","media")
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
