@@ -7,17 +7,16 @@ from django.shortcuts import render
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from account.views import index_page,profile_account,profile_account_delete
 from content.views import home_page,mylist_page,search,tvshows_page,movies_page
-from django.views.static import serve
+from.views import *
 
-def custom_404_view(request, exception):
-    return render(request, 'templates/404.html', status=404)
+
+
 
 # Set handler404 to use the custom function
-handler404 = 'netflixclone.urls.custom_404_view'
+handler404 = 'netflixclone.views.custom_404_view'
+handler500 = 'netflixclone.views.custom_500_view'
 
 urlpatterns = [
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('account/',include('account.urls')),
     path('',index_page,name="index"),
