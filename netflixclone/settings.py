@@ -151,7 +151,7 @@ STATICFILES_DIRS = [  # Corrected this line
 ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-STATIC_ROOT = "/home/ubuntu/project/project-2/staticfiles"
+STATIC_ROOT = "/home/ubuntu/project/project-2/public/staticfiles"
 
 
 MEDIA_URL = "/media/"
