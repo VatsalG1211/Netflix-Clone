@@ -147,15 +147,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATICFILES_DIRS = [  # Corrected this line
-    os.path.join(BASE_DIR, "public", "static"),
+    "/home/ubuntu/project/project-2/public/static",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+STATIC_ROOT = "/home/ubuntu/project/project-2/staticfiles"
 
 
 MEDIA_URL = "/media/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR,"public","static","media")
+MEDIA_ROOT = "/home/ubuntu/project/project-2/public/static/media"
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
