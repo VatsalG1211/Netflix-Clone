@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-i^(_b(v!l#lp3#4trg2m!kxf_ca+8eb-0jyanup-cxf%g$n8$j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
 
 
 
@@ -59,12 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LANGUAGES = [
-    ('en', 'English'),
-    ('hi', 'Hindi'),
-    
-    # Add more languages as needed
-]
+
 
 
 
@@ -155,7 +150,7 @@ STATICFILES_DIRS = [  # Corrected this line
     os.path.join(BASE_DIR, "public", "static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles_build","static")
 
 
 MEDIA_URL = "/media/"
