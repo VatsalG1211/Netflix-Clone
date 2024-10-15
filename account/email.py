@@ -7,7 +7,7 @@ def send_email_activation_link(email,email_token):
 
     subject = "Activation link of Your Account"
     link = reverse("activate-email",kwargs={'email_token':email_token})
-    full_link = f"http://127.0.0.1:8000{link}"
+    full_link = f"http://13.60.179.53{link}"
     body = f"You need to click on this link to activate your account :\n{full_link}"
     from_email = settings.EMAIL_HOST_USER
 
