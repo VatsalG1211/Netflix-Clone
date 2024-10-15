@@ -21,9 +21,7 @@ def send_password_reset_link(scheme,host,email,email_token):
 
    
     full_link = f"{scheme}://{host}{link}"
-    # body = f'''You need to click on this link to change password of your account :\n\n{full_link} 
-    # \n Link is Valid for 1 Minute Only 
-    # '''
+    
 
     body=f"""
     <html>
