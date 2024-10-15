@@ -1,0 +1,70 @@
+<footer>
+    {% if request.path == '/' %}
+
+    <div class="footer-email">
+        <form id="bottom-form" method="post">
+            {% csrf_token %}
+            {% if not request.user.is_authenticated %}
+            <div class="recom-email-btm">
+                <span id="email-rec-botm">Ready to watch? Enter your email to create or restart your membership.</span>
+            </div>
+          
+            <div class="email-fill">
+    
+                <input type="email" name="email" id="email-index1">
+                <button type="submit">Get Started &nbsp;<i class="fa-solid fa-chevron-right"></i></button>
+                <span id="email-label1">Email address</span>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+{% endif %}
+    <div class="footer">
+        <div class="contact">
+            Questions? Call <a href="#">000-800-919-1694</a>
+        </div>
+        <div class="link-wrapper">
+            <div class="link1">
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Speed Test</a></li>
+                </ul>
+            </div>
+            <div class="link2">
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                    <li><a href="#">Legal Notices</a></li>
+                </ul>
+            </div>
+            <div class="link3">
+                <ul>
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Ways to Watch</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                    <li><a href="#">Only on Netflix</a></li>
+                </ul>
+            </div>
+            <div class="link4">
+                <ul>
+                    <li><a href="#">Media Centre</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="language">
+       
+            <select name="lang" id="lang">
+                <option value="English">English</option>
+                <option value="Hindi">हिन्दी</option>
+            </select>
+            <i id="lang-btm" class="fa-solid fa-language"></i>
+        </div>
+        <span>Netflix India</span>
+        <span>Developed By Vatsal Goswami</span>
+    </div>
+</footer>

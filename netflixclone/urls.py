@@ -7,14 +7,13 @@ from django.shortcuts import render
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from account.views import index_page,profile_account,profile_account_delete
 from content.views import home_page,mylist_page,search,tvshows_page,movies_page
-from.views import custom_404_view,custom_500_view
+from.views import custom_404_view
 
 
 
 
 # Set handler404 to use the custom function
 handler404 = custom_404_view
-handler500 = custom_500_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),

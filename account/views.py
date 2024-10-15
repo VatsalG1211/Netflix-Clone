@@ -129,7 +129,7 @@ def forgot_page(request):
             baseuser.token_expiry_at = timezone.now() + timezone.timedelta(minutes=1)
             baseuser.save()
 
-            send_password_reset_link(email,email_token) #via email
+            send_password_reset_link(request.scheme,request.get_host(),email,email_token) #via email
 
             # Increment request count
             cache.set(cache_key, request_count + 1, timeout=THROTTLE_PERIOD)
