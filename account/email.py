@@ -11,6 +11,7 @@ def send_email_activation_link(email,email_token):
     body = f"You need to click on this link to activate your account :\n{full_link}"
     from_email = settings.EMAIL_HOST_USER
 
+# Just For learning
     
     send_mail(subject,body,from_email,[email])
 
