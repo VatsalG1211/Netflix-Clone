@@ -239,6 +239,10 @@ def payment_page(request):
     if request.method == 'POST':
 
         plan_name = request.POST.get('plan')
+        print("plan Name",plan_name)
+        if plan_name is None:
+            messages.warning(request,"there is a problem occured here .try again!")
+            return redirect("subscription-page")
         plan = Plan.objects.get(name = plan_name)
         amount = int(plan.amount)
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID,settings.RAZORPAY_SECRET_KEY))
