@@ -22,10 +22,9 @@ from django.conf import settings
 def send_email_activation_link(email,email_token):
 
     subject = "Activation of Your Account"
-
+    
     link = reverse("activate-email",kwargs={'email_token':email_token})
-    # full_link = f"http://13.60.179.53{link}"
-    full_link = f"http://127.0.0.1:8000{link}"
+    full_link = f"http://13.60.179.53{link}"
     
 
     body=f"""
