@@ -22,11 +22,12 @@
         </div>
     </header>
 
-   <div id="container">
+   <div id="container" style="background-image: url('/static/img/lost-way.png'); background-repeat: no-repeat;
+    background-size: cover;">
     <div id="lost-path">
         <h1>Lost your way?</h1>
         <p id="error">Sorry, we can't find that page. You'll find lots to explore on the home page. </p>    
-        <a href="#" id="home">Netflix Home</a>
+        <a href="{% url 'index' %}" id="home">Netflix Home</a>
    </div>
     
 </body>

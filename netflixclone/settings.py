@@ -28,7 +28,7 @@ TEMPLATE = os.path.join(BASE_DIR,"templates")
 SECRET_KEY = 'django-insecure-i^(_b(v!l#lp3#4trg2m!kxf_ca+8eb-0jyanup-cxf%g$n8$j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -165,8 +165,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'public','static','media')
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'vatsalgoswami1211@gmail.com'
-EMAIL_HOST_PASSWORD = 'dqxm unok misz yvul'
+EMAIL_HOST_USER = 'vatsalvfx@gmail.com'
+EMAIL_HOST_PASSWORD = 'tbnn hlws gpab hqwi'
 EMAIL_USE_TLS = True
 
 LOGIN_URL = "login"

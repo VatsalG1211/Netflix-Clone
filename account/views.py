@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse,Http404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -79,7 +79,9 @@ def email_verification_message(request,email):
             email = baseuser.user.email
             return render(request,"account/email-verification-message.html",{'email':email})
         else:
-            return redirect("login")
+            if baseuser.is_email_verified:
+                messages.warning(request,"You are already verified !")
+                return redirect("login")
     else:    
         return HttpResponse("Lost Your Way")
 
@@ -92,9 +94,10 @@ def activate_email(request,email_token):
 
         baseuser = BaseUser.objects.get(email_token=email_token)
         baseuser.activateEmail()
-        return HttpResponse("Your email is Verified !Login Now")
+        messages.success(request,"Your email has been Verified !Login Now")
+        return redirect("login")
     else:
-        return HttpResponse("Lost your Way")
+         raise Http404()
 
 
 #Forgot Page
@@ -162,7 +165,7 @@ def reset_password(request,email_token):
                 return redirect('login')
         return render(request,"account/reset-password.html")
     else:
-        return HttpResponse("You lost Your Way")
+         raise Http404()
 
 # Login page
 

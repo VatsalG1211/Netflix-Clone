@@ -41,370 +41,396 @@ $(searchbar_wrapper).ready(function () {
   const Newpanel = `<div class="searched-content-panel"
   style="gap:10px;align-content: center;margin-bottom: 50px;display: flex;justify-content:flex-start;padding:0px 80px;flex-shrink:0;"></div>`
 
-  $(searchbar).on("input", function () {
+
+  function debounce(func, delay) {
+    let debounceTimeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+
+  // Defining Search Functionality
+
+  function performSearch()
+  {
+
 
     // pop Closes onclicking main_tag while popwindow is Opened  
     search_wrapper.addEventListener("click", () => {
-  if (pop_movie.classList.contains('active')) {
-    closePopWindow();
-  }
-})
-
-
-    $(search_wrapper).show()
-    $('#no-result').hide();
-
-    // Check Window Size and confirm limit of searched content in one panel
-    let searched_content_limit;
-    if(window.innerWidth>1520)
-    {
-      searched_content_limit = 6
-    }
-    else if(window.innerWidth<1540 && window.innerWidth>1300)
-      {
-        searched_content_limit = 5
+      if (pop_movie.classList.contains('active')) {
+        closePopWindow();
       }
-      else if(window.innerWidth<1300 && window.innerWidth>1060)
+    })
+    
+    
+        $(search_wrapper).show()
+        $('#no-result').hide();
+    
+        // Check Window Size and confirm limit of searched content in one panel
+        let searched_content_limit;
+        if(window.innerWidth>1520)
         {
-          searched_content_limit = 4
+          searched_content_limit = 6
         }
-        else if(window.innerWidth<1060 && window.innerWidth>780)
+        else if(window.innerWidth<1540 && window.innerWidth>1300)
           {
-            searched_content_limit = 3
+            searched_content_limit = 5
           }
-          console.log("search limit",searched_content_limit)
-
-
-
-    $('.searched-content-panel').remove()
-    search_wrapper.insertAdjacentHTML('beforeend', Newpanel)
-
-
-    query = $(this).val()
-
-
-    console.log("query -> ", query)
-
-
-
-
-    if (query != "") {
-
-      $('main').hide()
-
-      fetch(`/search/${query}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-
-          if (data.length == 0) {
-            console.log("No season Found")
-            $('#no-result').show();
-          }
-
-
-
-
-
-
-          for (let i = 1; i <= data.length; i++) {
-
-
-            if (data[i - 1].c_type == "series") {
-
-
-              post = `
-        <div class="post-wrap" data-season-id="${data[i - 1].c_id}">
-              
-              <div class="movie-posters" style="background-image: url('${data[i - 1].poster}');">
-                  <div class="vid-btn">
-  
-                  </div>
-                  <div class="additional-detail">
-                      <div class="pops-btn-addit">
-                          <form>
-                              <a href="/content/series/${data[i - 1].episodes[0].id}" class="i-mod"
-                                  style="padding: 5px 10px;padding-top: 9px;"><i class="fa-solid fa-play"></i></a>
-                          </form>
-                          
-                          <form method="post" class="addlistform">
-                              <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-                              <label>
-                                  <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
-                                 
-                                  ${data[i - 1].is_in_content_list ? `<a class="i-mod add_list bgchange" data-season-id="${data[i - 1].c_id}"><i
-                                          class="fa-solid fa-check"></i></a>` : `<a class="i-mod add_list" data-season-id="${data[i - 1].c_id}"><i
-                                          class="fa-solid fa-plus"></i></a>` }
-                              </label>
-                          </form>
-  
-                          <form method="post" class="addlikeform">
-                              <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-                              <label>
-                                  <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
-  
-                                  
-                                  ${data[i - 1].is_in_liked_list ? ` <a class="i-mod add_like bgchange" data-season-id="${data[i - 1].c_id}"><i
-                                          class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
-                  : `<a class="i-mod add_like" data-season-id="${data[i - 1].c_id}"><i
-                                          class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
-                }
-                              </label>
-                          </form>
-                          <form>
-                              <a class="i-mod pop-btn" style="position: relative;left: 220%;">
-                                  <i style="transform: rotate(90deg) translate(-3px,0px) scaleY(1.5);font-size: 0.8rem;width:18px;"
-                                      class="fa-solid fa-greater-than" style="font-size: 0.5rem;"></i>
-                              </a>
-                          </form>
-  
-  
+          else if(window.innerWidth<1300 && window.innerWidth>1060)
+            {
+              searched_content_limit = 4
+            }
+            else if(window.innerWidth<1060 && window.innerWidth>780)
+              {
+                searched_content_limit = 3
+              }
+              console.log("search limit",searched_content_limit)
+    
+    
+    
+        $('.searched-content-panel').remove()
+        search_wrapper.insertAdjacentHTML('beforeend', Newpanel)
+    
+    
+        query = $(this).val().trim();
+    
+    
+        console.log("query -> ", query)
+    
+    
+    
+    
+        if (query != "") {
+    
+          $('main').hide()
+    
+          fetch(`/search/${query}`)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+    
+              if (data.length == 0) {
+                console.log("No season Found")
+                $('#no-result').show();
+              }
+    
+    
+    
+    
+    
+    
+              for (let i = 1; i <= data.length; i++) {
+    
+    
+                if (data[i - 1].c_type == "series") {
+    
+    
+                  post = `
+            <div class="post-wrap" data-season-id="${data[i - 1].c_id}">
+                  
+                  <div class="movie-posters" style="background-image: url('${data[i - 1].poster}');">
+                      <div class="vid-btn">
+      
                       </div>
-                      <div class="episode-short-detail">
-                          
-                          <a style="font-weight:400;">${data[i - 1].series} </a><span style="font-weight:600;">Season
-                              ${data[i - 1].season_no} </span>
+                      <div class="additional-detail">
+                          <div class="pops-btn-addit">
+                              <form>
+                                  <a href="/content/series/${data[i - 1].episodes[0].id}" class="i-mod"
+                                      style="padding: 5px 10px;padding-top: 9px;"><i class="fa-solid fa-play"></i></a>
+                              </form>
+                              
+                              <form method="post" class="addlistform">
+                                  <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+                                  <label>
+                                      <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
+                                     
+                                      ${data[i - 1].is_in_content_list ? `<a class="i-mod add_list bgchange" data-season-id="${data[i - 1].c_id}"><i
+                                              class="fa-solid fa-check"></i></a>` : `<a class="i-mod add_list" data-season-id="${data[i - 1].c_id}"><i
+                                              class="fa-solid fa-plus"></i></a>` }
+                                  </label>
+                              </form>
+      
+                              <form method="post" class="addlikeform">
+                                  <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+                                  <label>
+                                      <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
+      
+                                      
+                                      ${data[i - 1].is_in_liked_list ? ` <a class="i-mod add_like bgchange" data-season-id="${data[i - 1].c_id}"><i
+                                              class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
+                      : `<a class="i-mod add_like" data-season-id="${data[i - 1].c_id}"><i
+                                              class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
+                    }
+                                  </label>
+                              </form>
+                              <form>
+                                  <a class="i-mod pop-btn" style="position: relative;left: 220%;">
+                                      <i style="transform: rotate(90deg) translate(-3px,0px) scaleY(1.5);font-size: 0.8rem;width:18px;"
+                                          class="fa-solid fa-greater-than" style="font-size: 0.5rem;"></i>
+                                  </a>
+                              </form>
+      
+      
+                          </div>
+                          <div class="episode-short-detail">
+                              
+                              <a style="font-weight:400;">${data[i - 1].series} </a><span style="font-weight:600;">Season
+                                  ${data[i - 1].season_no} </span>
+                          </div>
+      
                       </div>
-  
+      
                   </div>
-  
               </div>
-          </div>
-        
-        `
-            }
-
-            else {
-
-              post = `
-          <div class="post-wrap" data-season-id="${data[i - 1].c_id}">
-                
-                <div class="movie-posters" style="background-image: url('${data[i - 1].poster}');">
-                    <div class="vid-btn">
-    
-                    </div>
-                    <div class="additional-detail">
-                        <div class="pops-btn-addit">
-                            <form>
-                                <a href="/content/movie/${data[i - 1].m_id}" class="i-mod"
-                                    style="padding: 5px 10px;padding-top: 9px;"><i class="fa-solid fa-play"></i></a>
-                            </form>
-                            
-                            <form method="post" class="addlistform">
-                                <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-                                <label>
-                                    <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
-                                   
-                                    ${data[i - 1].is_in_content_list ? `<a class="i-mod add_list bgchange" data-season-id="${data[i - 1].c_id}"><i
-                                            class="fa-solid fa-check"></i></a>` : `<a class="i-mod add_list" data-season-id="${data[i - 1].c_id}"><i
-                                            class="fa-solid fa-plus"></i></a>` }
-                                </label>
-                            </form>
-    
-                            <form method="post" class="addlikeform">
-                                <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
-                                <label>
-                                    <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
-    
-                                    
-                                    ${data[i - 1].is_in_liked_list ? ` <a class="i-mod add_like bgchange" data-season-id="${data[i - 1].c_id}"><i
-                                            class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
-                  : `<a class="i-mod add_like" data-season-id="${data[i - 1].c_id}"><i
-                                            class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
+            
+            `
                 }
-                                </label>
-                            </form>
-                            <form>
-                                <a class="i-mod pop-btn" style="position: relative;left: 220%;">
-                                    <i style="transform: rotate(90deg) translate(-3px,0px) scaleY(1.5);font-size: 0.8rem;width:18px;"
-                                        class="fa-solid fa-greater-than" style="font-size: 0.5rem;"></i>
-                                </a>
-                            </form>
     
+                else {
     
+                  post = `
+              <div class="post-wrap" data-season-id="${data[i - 1].c_id}">
+                    
+                    <div class="movie-posters" style="background-image: url('${data[i - 1].poster}');">
+                        <div class="vid-btn">
+        
                         </div>
-                        <div class="episode-short-detail">
-                            
-                            <a style="font-weight:400;">${data[i - 1].title} </a>
+                        <div class="additional-detail">
+                            <div class="pops-btn-addit">
+                                <form>
+                                    <a href="/content/movie/${data[i - 1].m_id}" class="i-mod"
+                                        style="padding: 5px 10px;padding-top: 9px;"><i class="fa-solid fa-play"></i></a>
+                                </form>
+                                
+                                <form method="post" class="addlistform">
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+                                    <label>
+                                        <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
+                                       
+                                        ${data[i - 1].is_in_content_list ? `<a class="i-mod add_list bgchange" data-season-id="${data[i - 1].c_id}"><i
+                                                class="fa-solid fa-check"></i></a>` : `<a class="i-mod add_list" data-season-id="${data[i - 1].c_id}"><i
+                                                class="fa-solid fa-plus"></i></a>` }
+                                    </label>
+                                </form>
+        
+                                <form method="post" class="addlikeform">
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="${csrfToken}">
+                                    <label>
+                                        <input type="hidden" class="c_id" name="c_id" value="${data[i - 1].c_id}">
+        
+                                        
+                                        ${data[i - 1].is_in_liked_list ? ` <a class="i-mod add_like bgchange" data-season-id="${data[i - 1].c_id}"><i
+                                                class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
+                      : `<a class="i-mod add_like" data-season-id="${data[i - 1].c_id}"><i
+                                                class="fa-solid fa-thumbs-up" style="transform: translateY(-2.5px);"></i></a>`
+                    }
+                                    </label>
+                                </form>
+                                <form>
+                                    <a class="i-mod pop-btn" style="position: relative;left: 220%;">
+                                        <i style="transform: rotate(90deg) translate(-3px,0px) scaleY(1.5);font-size: 0.8rem;width:18px;"
+                                            class="fa-solid fa-greater-than" style="font-size: 0.5rem;"></i>
+                                    </a>
+                                </form>
+        
+        
+                            </div>
+                            <div class="episode-short-detail">
+                                
+                                <a style="font-weight:400;">${data[i - 1].title} </a>
+                            </div>
+        
                         </div>
-    
+        
                     </div>
-    
                 </div>
-            </div>
-          
-          `
-
-
-            }
-
-
-            if ((i - 1) % searched_content_limit == 0) {
-              search_wrapper.insertAdjacentHTML('beforeend', Newpanel)
-            }
-
-            let new_search_panel_all = search_wrapper.querySelectorAll('.searched-content-panel')
-            let last_search_panel = new_search_panel_all[new_search_panel_all.length - 1]
-
-            last_search_panel.insertAdjacentHTML('beforeend', post)
-
-
-
-          }
-
-
-          let m_posters = search_wrapper.querySelectorAll('.movie-posters')
-
-
-
-
-          m_posters.forEach(poster => {
-            const vid_det = poster.querySelector('.vid-btn');
-            const additional_pop = poster.querySelector('.additional-detail');
-            const pop_btn = additional_pop.querySelector('.pop-btn');
-            const postWrap = poster.parentElement;
-
-            pop_btn.addEventListener("click", () => {
-
-              OpenPopWindow(postWrap);
-
-            });
-
-
-            poster.addEventListener("click", () => {
-
-              if (window.innerWidth <= 1100) {
-                poster.style.scale = '1.0';
-
+              
+              `
+    
+    
+                }
+    
+    
+                if ((i - 1) % searched_content_limit == 0) {
+                  search_wrapper.insertAdjacentHTML('beforeend', Newpanel)
+                }
+    
+                let new_search_panel_all = search_wrapper.querySelectorAll('.searched-content-panel')
+                let last_search_panel = new_search_panel_all[new_search_panel_all.length - 1]
+    
+                last_search_panel.insertAdjacentHTML('beforeend', post)
+    
+    
+    
               }
-              else {
-                poster.style.scale = '1.40';
-                poster.style.marginRight = '5px';
-
-
-              }
-
-              vid_det.style.opacity = '100%';
-              additional_pop.style.display = 'block';
-              postWrap.style.zIndex = '1';
-
-
-
-              poster.addEventListener("mouseleave", () => {
-                poster.style.scale = '1';
-                poster.style.margin = '0';
-                vid_det.style.opacity = '0%';
-                postWrap.style.zIndex = '0';
-                additional_pop.style.display = 'none';
-
-              });
-
-            });
-
-
-            // In Additional Btn in Content List in Searching
-
-            $(poster).ready(function () {
-
-              let addlistbtn = poster.querySelector('.add_list')
-
-
-              $(addlistbtn).on('click', function () {
-
-
-
-                var c_id = addlistbtn.getAttribute('data-season-id');
-
-                console.log(c_id);
-
-                $.ajax({
-                  url: '/content/add_my_list/', // Ensure this URL is correct
-                  type: 'POST',
-                  data: {
-                    'c_id': c_id // Send c_id as part of form data
-                  },
-                  headers: { "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val() },
-                  success: function (response) {
-                    console.log(response); // Handle success
-                  },
-                  error: function (error) {
-                    console.error(error); // Handle error
-                  }
+    
+    
+              let m_posters = search_wrapper.querySelectorAll('.movie-posters')
+    
+    
+    
+    
+              m_posters.forEach(poster => {
+                const vid_det = poster.querySelector('.vid-btn');
+                const additional_pop = poster.querySelector('.additional-detail');
+                const pop_btn = additional_pop.querySelector('.pop-btn');
+                const postWrap = poster.parentElement;
+    
+                pop_btn.addEventListener("click", () => {
+    
+                  OpenPopWindow(postWrap);
+    
                 });
-
-                const same_poster_list = document.querySelectorAll(`.post-wrap[data-season-id="${c_id}"]`)
-
-                same_poster_list.forEach(same_poster => {
-
-                  let addlistbtns = same_poster.querySelector('.add_list')
-
-
-                  if (addlistbtns.children[0].classList.contains('fa-plus')) {
-                    addlistbtns.children[0].classList.remove('fa-plus')
-                    addlistbtns.children[0].classList.add('fa-check')
-                    addlistbtns.classList.toggle('bgchange')
+    
+    
+                poster.addEventListener("click", () => {
+    
+                  if (window.innerWidth <= 1100) {
+                    poster.style.scale = '1.0';
+    
                   }
                   else {
-                    addlistbtns.children[0].classList.remove('fa-check')
-                    addlistbtns.children[0].classList.add('fa-plus')
-                    addlistbtns.classList.toggle('bgchange')
+                    poster.style.scale = '1.40';
+                    poster.style.marginRight = '5px';
+    
+    
                   }
-
-
-                })
-
-
-
-              });
-            });
-
-
-
-            // In Additional Btn in Like List in Searching
-
-            $(poster).ready(function () {
-
-              let addlikebtn = poster.querySelector('.add_like')
-
-
-              $(addlikebtn).on('click', function () {
-
-
-
-                var c_id = addlikebtn.getAttribute('data-season-id');
-
-
-                $.ajax({
-                  url: '/content/add_like/', // Ensure this URL is correct
-                  type: 'POST',
-                  data: {
-                    'c_id': c_id // Send c_id as part of form data
-                  },
-                  headers: { "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val() },
-                  success: function (response) {
-                    console.log(response); // Handle success
-                  },
-                  error: function (error) {
-                    console.error(error); // Handle error
-                  }
+    
+                  vid_det.style.opacity = '100%';
+                  additional_pop.style.display = 'block';
+                  postWrap.style.zIndex = '1';
+    
+    
+    
+                  poster.addEventListener("mouseleave", () => {
+                    poster.style.scale = '1';
+                    poster.style.margin = '0';
+                    vid_det.style.opacity = '0%';
+                    postWrap.style.zIndex = '0';
+                    additional_pop.style.display = 'none';
+    
+                  });
+    
                 });
-
-
-                const same_poster_list = document.querySelectorAll(`.post-wrap[data-season-id="${c_id}"]`)
-
-                same_poster_list.forEach(same_poster => {
-
-                  let addlikebtns = same_poster.querySelector('.add_like')
-
-                  addlikebtns.classList.toggle('bgchange')
-
-                })
+    
+    
+                // In Additional Btn in Content List in Searching
+    
+                $(poster).ready(function () {
+    
+                  let addlistbtn = poster.querySelector('.add_list')
+    
+    
+                  $(addlistbtn).on('click', function () {
+    
+    
+    
+                    var c_id = addlistbtn.getAttribute('data-season-id');
+    
+                    console.log(c_id);
+    
+                    $.ajax({
+                      url: '/content/add_my_list/', // Ensure this URL is correct
+                      type: 'POST',
+                      data: {
+                        'c_id': c_id // Send c_id as part of form data
+                      },
+                      headers: { "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val() },
+                      success: function (response) {
+                        console.log(response); // Handle success
+                      },
+                      error: function (error) {
+                        console.error(error); // Handle error
+                      }
+                    });
+    
+                    const same_poster_list = document.querySelectorAll(`.post-wrap[data-season-id="${c_id}"]`)
+    
+                    same_poster_list.forEach(same_poster => {
+    
+                      let addlistbtns = same_poster.querySelector('.add_list')
+    
+    
+                      if (addlistbtns.children[0].classList.contains('fa-plus')) {
+                        addlistbtns.children[0].classList.remove('fa-plus')
+                        addlistbtns.children[0].classList.add('fa-check')
+                        addlistbtns.classList.toggle('bgchange')
+                      }
+                      else {
+                        addlistbtns.children[0].classList.remove('fa-check')
+                        addlistbtns.children[0].classList.add('fa-plus')
+                        addlistbtns.classList.toggle('bgchange')
+                      }
+    
+    
+                    })
+    
+    
+    
+                  });
+                });
+    
+    
+    
+                // In Additional Btn in Like List in Searching
+    
+                $(poster).ready(function () {
+    
+                  let addlikebtn = poster.querySelector('.add_like')
+    
+    
+                  $(addlikebtn).on('click', function () {
+    
+    
+    
+                    var c_id = addlikebtn.getAttribute('data-season-id');
+    
+    
+                    $.ajax({
+                      url: '/content/add_like/', // Ensure this URL is correct
+                      type: 'POST',
+                      data: {
+                        'c_id': c_id // Send c_id as part of form data
+                      },
+                      headers: { "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val() },
+                      success: function (response) {
+                        console.log(response); // Handle success
+                      },
+                      error: function (error) {
+                        console.error(error); // Handle error
+                      }
+                    });
+    
+    
+                    const same_poster_list = document.querySelectorAll(`.post-wrap[data-season-id="${c_id}"]`)
+    
+                    same_poster_list.forEach(same_poster => {
+    
+                      let addlikebtns = same_poster.querySelector('.add_like')
+    
+                      addlikebtns.classList.toggle('bgchange')
+    
+                    })
+                  });
+                });
               });
-            });
-          });
-        })
-    }
-  })
+            })
+        }
+
+
+  }
+
+
+  // 
+
+
+  $(searchbar).on("input",debounce(performSearch,500));
+
+
 })
 
 
