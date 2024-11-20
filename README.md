@@ -1,6 +1,11 @@
-AWS has Reported my site due to clone phishing.Actually this site is only for learning and practice purpose.
+My Project is Deployed on : http://13.60.179.53
 
-so i removed my site from AWS EC2 but i have deployed video of my site on machine locally.
+Actually this site is only for learning and practice purpose.
+
+
+(if my site is not available on http://13.60.179.53/ then it would be removed due to being reported as phishing clone.)
+
+If my site is not available on server then i have a video of my site deployed on machine locally.
 
 ---------------------------------------------------------------------------------------------------------------------------
 
