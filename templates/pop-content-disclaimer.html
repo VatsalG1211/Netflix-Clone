@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up Example</title>
+    <style>
+        /* Pop-up styling */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            padding: 20px;
+            background: #ffffff1c;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        #popup h2 {
+            margin-top: 0;
+        }
+        #popup button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #popup button:hover {
+            background: #0056b3;
+        }
+        /* Background overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay"></div>
+    <div id="popup">
+        <section id="disclaimer" style="background: transparent; padding: 20px; border-top: 1px solid #ccc;">
+            <div style="max-width: 800px; margin: auto; text-align: center; font-family: Arial, sans-serif; color: white;">
+                <h2 style="color: white;">Content Disclaimer</h2>
+                <p>
+                    This project is a <strong>Netflix-inspired clone</strong> created solely for <strong>educational purposes</strong>. 
+                    The videos displayed on this platform are embedded from <a href="https://www.youtube.com/" target="_blank" style="color: #007BFF; text-decoration: none;">YouTube</a>, 
+                    and all rights to the video content belong to their respective creators and rights holders.
+                </p>
+                <p>
+                    Images, text, and other media used in this project are either:
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✔ Provided through publicly available content on YouTube</li>
+                        <li>✔ Used as placeholders for educational purposes</li>
+                        <li>✔ Credited to Netflix and its intellectual property</li>
+                    </ul>
+                </p>
+                <p>
+                    This project does not claim any ownership of Netflix content, including but not limited to text, logos, videos, or images. 
+                    All rights to such content remain with Netflix, Inc.
+                </p>
+                <p>
+                    This project is not intended to do any clone phishing activity or any illegal activity.If you believe any content has been used inappropriately, please contact us at <a href="mailto:vatsalgoswami1211@gmail.com">vatsalgoswami1211@gmail.com</a>
+                </p>
+            </div>
+        </section>
+        <div class="button">
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Check if the session key is already set
+        if (!sessionStorage.getItem('popupDisplayed')) {
+            // Show the pop-up
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // Set session key
+            sessionStorage.setItem('popupDisplayed', 'true');
+
+            // Close pop-up on button click
+            document.getElementById('closePopup').addEventListener('click', () => {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

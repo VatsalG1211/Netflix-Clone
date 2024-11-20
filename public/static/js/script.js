@@ -20,6 +20,7 @@ let header_tag = document.querySelector('header')
 let footer_tag = document.querySelector('footer')
 
 
+
 window.addEventListener("scroll", () => {
   menu_wrapper.classList.remove('open_menu');
   const header = document.querySelector('header')

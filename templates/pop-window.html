@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Window</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .popup-overlay {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup h2 {
+      margin-bottom: 15px;
+    }
+
+    .popup p {
+      margin: 10px 0;
+    }
+
+    .popup button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup button:hover {
+      background-color: #d40812;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+        <h2>Demo User Credentials</h2>
+        <p><strong>Email ID:</strong> netflixclone@test.com</p>
+        <p><strong>Password:</strong> Test@123</p>
+        <p style="font-size: 12px; color: red; margin-top: 15px;">
+          <strong>Disclaimer:</strong> This is for educational purposes only. The demo credentials provided here are not intended for any malicious or phishing activities. Please use them responsibly and ethically.
+        </p>
+        <button onclick="closePopup()">Close</button>
+      </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById("popupOverlay").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popupOverlay").style.display = "none";
+    }
+  </script>
+</body>
+</html>

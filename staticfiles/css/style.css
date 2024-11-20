@@ -444,7 +444,7 @@ height: 40px;
 footer{
     margin-top: auto;
     background-color: rgb(45, 45, 45);
-    z-index: -500;
+    /* z-index: -500; */
 }
 
 .footer{
